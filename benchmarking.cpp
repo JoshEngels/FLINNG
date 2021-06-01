@@ -1,33 +1,12 @@
 #include <cmath>
 
 #include "FLINNG.h"
-#include "LSHReservoirSampler.h"
-#include "MatMul.h"
 #include "benchmarking.h"
 #include "dataset.h"
 #include "evaluate.h"
 #include "indexing.h"
-#include "misc.h"
 #include "omp.h"
-
-#include "FrequentItems.h"
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
-
-#include <cmath>
-
 #include "LSHReservoirSampler.h"
-#include "dataset.h"
-#include "misc.h"
-#include "evaluate.h"
-#include "indexing.h"
-#include "omp.h"
-#include "MatMul.h"
-#include "benchmarking.h"
 
 #include <string>
 #include <sstream>
@@ -43,7 +22,10 @@
 #include <iostream>
 using namespace std;
 
+typedef chrono::high_resolution_clock Clock;
+
 void runBenchmark();
+
 
 float get_mag(float *start) {
 	float mag = 0;

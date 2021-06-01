@@ -1,6 +1,5 @@
 
 #include "indexing.h"
-#include "misc.h"
 #include "LSHReservoirSampler.h"
 
 //#define PRINT_CLINFO
@@ -47,7 +46,7 @@ void LSHReservoirSampler::initVariables(unsigned int numHashPerFamily, unsigned 
 	_hashingProbes = hashingProbes;
 	_tableAllocFraction = tableAllocFraction;
 	_segmentSizeModulor = numHashFamilies * reservoirSize * queryProbes - 1;
-	_segmentSizeBitShiftDivisor = getLog2(_segmentSizeModulor);
+	_segmentSizeBitShiftDivisor = log2(_segmentSizeModulor);
 
 	_numReservoirs = (unsigned int) pow(2, _rangePow);		// Number of rows in each hashTable.
 	_numReservoirsHashed = (unsigned int) pow(2, _numSecHash);		// Number of rows in each hashTable.

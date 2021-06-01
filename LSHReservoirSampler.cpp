@@ -1,5 +1,5 @@
 #include "LSHReservoirSampler.h"
-#include "misc.h"
+
 #include <functional>
 
 void LSHReservoirSampler::add(int numInputEntries, unsigned int* allprobsHash, unsigned int* allprobsIdx,  std::function<size_t(size_t, size_t)> indexFunc) {
