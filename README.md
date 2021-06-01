@@ -9,53 +9,33 @@ make
 ```
 You will need to have a copy of the g++ compiler.
 ****
-Dataset ground truth is already in the datasets folder. To get the datasets themselves, besides yfcc, simply run
+Dataset ground truth is already in the datasets folder. To get the datasets themselves, besides yfcc, you will need to run
 ```setup
 get-data
 ```
+NOTE: While the url and webspam datasets are available on lib-svm, have hosted the promethion, genome, and proteome datasets on google drive since getting them can be a process. To get these files, first follow the links in the comments in get-data and download them into the base directory before running get-data.
+
 Getting yfcc is more complicated, especially since it is so large. Like the other datasets, the groundtruth is already in the data folder.
 
-## Training
-
-To train the model(s) in the paper, run this command:
-
-```train
-python train.py --input-data <path_to_data> --alpha 10 --beta 20
+## Run FLINNG
+To run FLINNG on the given hyperparameters and dataset, simply run
+```setup
+runme > flinng_<dataset_name>.txt
 ```
+which will run the trials and save the result in a textfile with the name flinng_<dataset_name>.txt.
 
->📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
+## Baseline methods
 
-## Evaluation
+See the paper for more details on baseline methods we compared against. 
+These baseline method implementations are not contained here, but we saved the output of those methods in similar format text files to the above for FLINNG, or in simple "RA@B time, recall, precision" format, in text files with the same naming convention: [method_name]_[algo_name].txt.
 
-To evaluate my model on ImageNet, run:
-
-```eval
-python eval.py --model-file mymodel.pth --benchmark imagenet
+## Generate Results
+ All results for our method and the baselines we compared against are contained in the results folder, and you can ready that for comparison by running
+```saved
+cp results/* .
 ```
-
->📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
-
-## Pre-trained Models
-
-You can download pretrained models here:
-
-- [My awesome model](https://drive.google.com/mymodel.pth) trained on ImageNet using parameters x,y,z. 
-
->📋  Give a link to where/how the pretrained models can be downloaded and how they were trained (if applicable).  Alternatively you can have an additional column in your results table with a link to the models.
-
-## Results
-
-Our model achieves the following performance on :
-
-### [Image Classification on ImageNet](https://paperswithcode.com/sota/image-classification-on-imagenet)
-
-| Model name         | Top 1 Accuracy  | Top 5 Accuracy |
-| ------------------ |---------------- | -------------- |
-| My awesome model   |     85%         |      95%       |
-
->📋  Include a table of results from your paper, and link back to the leaderboard for clarity and context. If your main result is a figure, include that figure and link to the command or notebook to reproduce it. 
-
-
-## Contributing
-
->📋  Pick a licence and describe how to contribute to your code repository. ****
+To generate all graphs used in the paper, run
+```analysis
+cd analysis
+./generate-graphs
+```

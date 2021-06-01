@@ -4,7 +4,6 @@ cobjs/
 annotate-result
 *.svg
 perf.*
-*.txt
 *.data
 *.out
 *.bin

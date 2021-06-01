@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Download compressed datasets
+# Genomes:
+# Go to https://drive.google.com/uc?export=download&id=1K3FQ9-aNmS8Mf-yVQDr0WceeCAbAbP9a
+# Promethion
+# Go to https://drive.google.com/uc?export=download&id=1EIN8uUuy98oIqYfHadtc2KzOzRH_E1Cs &
+# Proteomes
+# Go to https://drive.google.com/uc?export=download&id=1SviZ9QKdsUSOrrvP2TzAbg9fi29iB0HT &
+# URL
+wget -t inf https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/url_combined.bz2 &
+# Webspam
+wget -t inf https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/webspam_wc_normalized_trigram.svm.bz2 &
+
+wait
+
+# Unzipping and saving into folder
+bunzip2 -c url_combined.bz2 > data/url/data
+bunzip2 -c webspam_wc_normalized_trigram.svm.bz2 > data/webspam/data
+gunzip -c genomes-data.gz > data/genomes/data
+gunzip -c promethion-data.gz > data/promethion/data
+gunzip -c proteomes-data.gz > data/proteomes/data
+rm *.gz
+rm *.bz2
