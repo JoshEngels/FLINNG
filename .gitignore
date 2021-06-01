@@ -9,3 +9,4 @@ perf.*
 *.bin
 *.png
 .vscode/
+binarizeYFCC/run

@@ -15,12 +15,20 @@ get-data
 ```
 NOTE: While the url and webspam datasets are available on lib-svm, have hosted the promethion, genome, and proteome datasets on google drive since getting them can be a process. To get these files, first follow the links in the comments in get-data and download them into the base directory before running get-data.
 
-Getting yfcc is more complicated, especially since it is so large. Like the other datasets, the groundtruth is already in the data folder.
+Getting yfcc is more complicated since it is so large. Like the other datasets, the groundtruth is already in the data folder (as well as some generated queries). To get access to the embeddings, go to http://deepfeatures.org/download.html and follow the instructions there. This will results in 97 (zipped) text files. You can then change line 2 in binarizeYFCC/make_bins to point to the folder containing the 97 zipped text files, and then run 
+```yfcc
+cd binarizeYFCC
+./make_bins
+```
+Finally, change the BASEPATH variable in [benchmarking.h](benchmarking.h) to point to 
+```yfcc2
+<yfcc_data_path>.YFCC100M_hybridCNN_gmean_fc6_"
+```
 
 ## Run FLINNG
 To run FLINNG on the given hyperparameters and dataset, simply run
 ```setup
-runme > flinng_<dataset_name>.txt
+./runme > flinng_<dataset_name>.txt
 ```
 which will run the trials and save the result in a textfile with the name flinng_<dataset_name>.txt.
 

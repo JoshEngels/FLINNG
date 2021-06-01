@@ -86,7 +86,7 @@ Then modify the file location and parameters below in the Parameters section. */
 #define TOPK					128
 #define AVAILABLE_TOPK				128
 
-#define BASEFILE	        "../data/proteomes/data"
+#define BASEFILE	        "data/proteomes/data"
 #define GTRUTHINDICE	        "data/proteomes/indices"
 
 #elif defined PROMETHION_SHORT
@@ -145,3 +145,10 @@ Then modify the file location and parameters below in the Parameters section. */
         #define FLINNG16BIT
 #endif
 
+// To avoid annoying compile time errors
+#ifndef DIMENSION
+        #define DIMENSION 0 
+#endif
+#ifndef QUERYFILE
+        #define QUERYFILE ""
+#endif

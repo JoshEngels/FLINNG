@@ -1,0 +1,12 @@
+#!/bin/bash
+DATAPATH="FILL IN DATA PATH HERE"
+g++ run.cpp HybridCNNReader.cpp HybridCNNReader.h -o run
+for i in {1..96};
+do
+        file1=$(printf "%s/YFCC100M_hybridCNN_gmean_fc6_%d.txt.gz" "$DATAPATH" "$i")
+        file2=$(printf "%s/YFCC100M_hybridCNN_gmean_fc6_%d.txt" "$DATAPATH" "$i")
+        file3=$(printf "%s/YFCC100M_hybridCNN_gmean_fc6_%d.bin" "$DATAPATH" "$i")
+        pigz -dkc "$file1" > "$file2"
+        ./run "$file2" "$file3"
+        rm "$file2"
+done
