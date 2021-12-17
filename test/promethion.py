@@ -8,7 +8,7 @@ import numpy as np
 import flinng
 import time
 
-saved_as_npy = True
+saved_as_npy = False
 if not saved_as_npy:
   promethion = np.loadtxt("promethion-data")
   np.save("promethion-data", promethion)
