@@ -105,7 +105,7 @@ auto results = flinng.query(queryHashes, topK);
 
 ## Authors
 
-Built by [Josh Engels](https://www.github.com/joshengels). 
+Implementation by [Josh Engels](https://www.github.com/joshengels). 
 FLINNG created in collaboration with [Ben Coleman](https://randorithms.com/about.html)
 and [Anshumali Shrivastava](https://www.cs.rice.edu/~as143/).
 
