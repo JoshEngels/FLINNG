@@ -24,7 +24,7 @@ this branch might soon receive:
 
 To install Python bindings, run
 ```
-git clone https://github.com/JoshEngels/FLINNG
+git clone --depth 1 https://github.com/JoshEngels/FLINNG
 cd FLINNG
 make
 export PYTHONPATH=$(pwd)/build:$PYTHONPATH
