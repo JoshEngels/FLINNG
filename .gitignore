@@ -1,12 +1,2 @@
-runme
-cppobjs/
-cobjs/
-annotate-result
-*.svg
-perf.*
-*.data
-*.out
-*.bin
-*.png
-.vscode/
-binarizeYFCC/run
+build/
+test/promethion-data*

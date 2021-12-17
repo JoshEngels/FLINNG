@@ -1,49 +1,40 @@
-TARGET  := runme
+# Base file courtesy of https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
 
-CPPOBJDIR = cppobjs
+# Build and source directories, target executable name
+TARGET_PYBIND ?= flinng.so
+BUILD_DIR ?= ./build
+SRC_DIR ?= src
 
-CPPSOURCES := $(wildcard *.cpp)
-CPPOBJS := $(CPPSOURCES:%.cpp=$(CPPOBJDIR)/%.o)
+# Find cpp source files
+SRCS := $(shell find $(SRC_DIR) -name '*.cpp')
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-COBJDIR = cobjs
+# Define flags
+CPP_DEBUG_FLAGS := -g -fno-omit-frame-pointer 
+CPP_OPT_FLAGS := -O3 -ffast-math
+CPP_WARN_FLAGS := -Wall -Werror
+INC_FLAGS := $(shell python3 -m pybind11 --includes)
+CPPFLAGS ?= -std=c++11 $(INC_FLAGS) $(CPP_WARN_FLAGS) $(CPP_OPT_FLAGS) $(CPP_DEBUG_FLAGS) -MMD -MP -fopenmp
 
-CSOURCES := $(wildcard *.c)
-COBJS := $(CSOURCES:%.c=$(COBJDIR)/%.o)
+all: $(BUILD_DIR)/$(TARGET_PYBIND)
 
-OBJS = $(CPPOBJS) $(COBJS)
+# Make target pybind
+$(BUILD_DIR)/$(TARGET_PYBIND): ./pybind/pybind.cpp $(OBJS)
+	$(MKDIR_P) $(dir $@)
+	g++ -shared -o $(BUILD_DIR)/$(TARGET_PYBIND) $(CPPFLAGS) -undefined dynamic_lookup -fPIC ./pybind/pybind.cpp $(SRCS)
 
-OPT_FLAGS   := -Ofast -fopenmp -march=native
+# Make c++ source into object files
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	$(MKDIR_P) $(dir $@)
+	g++ $(CPPFLAGS) -c $< -o $@
 
-INC := /usr/include/
-
-LIB := -L/usr/lib64/
-LIB += -fopenmp
-
-CXXFLAGS := -m64 -DUNIX -std=c++11 -g -fno-omit-frame-pointer $(WARN_FLAGS) $(OPT_FLAGS) -I$(INC)
-CFLAGS := -m64 -DUNIX $(WARN_FLAGS) $(OPT_FLAGS) -I$(INC)
-
-LDFLAGS := $(LIBRARY_PATH) $(LIB)
-
+# Clean command
 .PHONY: clean
-
-$(TARGET): $(CPPOBJDIR) $(COBJDIR) $(CPPOBJS) $(COBJS)
-	g++ -fPIC -o $(TARGET) $(CPPOBJS) $(LDFLAGS) 
-
-$(CPPOBJS): $(CPPOBJDIR)/%.o: %.cpp
-	@echo "compile $@ $<"
-	g++ -fPIC $(CXXFLAGS) -c $< -o $@
-        
-$(COBJS): $(COBJDIR)/%.o: %.c
-	@echo "compile $@ $<"
-	gcc -fPIC $(CFLAGS) -c $< -o $@
-        
-$(CPPOBJDIR):   
-	@ mkdir -p $(CPPOBJDIR)
-        
-$(COBJDIR):     
-	@ mkdir -p $(COBJDIR)
-
 clean:
-	$(RM) $(TARGET) $(OBJ)
-	$(RM) -rf $(CPPOBJDIR)
-	$(RM) -rf $(COBJDIR)
+	$(RM) -r $(BUILD_DIR)
+
+-include $(DEPS)
+-include $(TESTDEPS)
+
+MKDIR_P ?= mkdir -p
