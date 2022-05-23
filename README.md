@@ -118,4 +118,4 @@ Currently, contributions are limited to bug fixes and suggestions.
 For a bug fix, feel free to submit a PR or send an email. 
 
 Work on a production, supported version with efficient hash functions and an extended
-feature set is ongoing at [ThirdAI](thirdai.com).
+feature set is ongoing at [ThirdAI](https://thirdai.com).
