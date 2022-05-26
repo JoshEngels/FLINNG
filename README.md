@@ -61,8 +61,8 @@ dense_index = flinng.dense_32_bit(
                             data_dimension, 
                             num_hash_tables, 
                             hashes_per_table)
-sparse_index = flinng.sparse_32_bit(n
-                            um_rows, 
+sparse_index = flinng.sparse_32_bit(
+                            num_rows, 
                             cells_per_row, 
                             num_hash_tables, 
                             hashes_per_table,
