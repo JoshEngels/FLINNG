@@ -111,11 +111,24 @@ and [Anshumali Shrivastava](https://www.cs.rice.edu/~as143/).
 
 Please feel free to contact josh.adam.engels@gmail.com with any questions.
 
-
 ## Contributing
 
 Currently, contributions are limited to bug fixes and suggestions. 
 For a bug fix, feel free to submit a PR or send an email. 
 
-Work on a production, supported version with efficient hash functions and an extended
-feature set is ongoing at [ThirdAI](https://thirdai.com).
+## Citations
+
+If you found our work useful, please cite our work as follows:
+
+@inproceedings{NEURIPS2021_5248e511,
+ author = {Engels, Joshua and Coleman, Benjamin and Shrivastava, Anshumali},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {M. Ranzato and A. Beygelzimer and Y. Dauphin and P.S. Liang and J. Wortman Vaughan},
+ pages = {9950--9962},
+ publisher = {Curran Associates, Inc.},
+ title = { Practical Near Neighbor Search via Group Testing},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2021/file/5248e5118c84beea359b6ea385393661-Paper.pdf},
+ volume = {34},
+ year = {2021}
+}
+
