@@ -120,6 +120,7 @@ For a bug fix, feel free to submit a PR or send an email.
 
 If you found our work useful, please cite our work as follows:
 
+```
 @inproceedings{NEURIPS2021_5248e511,
  author = {Engels, Joshua and Coleman, Benjamin and Shrivastava, Anshumali},
  booktitle = {Advances in Neural Information Processing Systems},
@@ -131,4 +132,4 @@ If you found our work useful, please cite our work as follows:
  volume = {34},
  year = {2021}
 }
-
+```
